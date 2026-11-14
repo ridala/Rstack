@@ -1,52 +1,43 @@
 # Rstack
 
-A growing collection of skills and practical resources for design and development, by [ridala](https://github.com/ridala).
+Skills and practical resources I use for design and development, shared so others can inspect and use them. Skills live in `skills/`; future tools and resources will have their own directories when added.
 
 ## Skills
 
-| Skill | Purpose | Requirements |
+| Skill | Say | What it does |
 | --- | --- | --- |
-| [stageshow-figma](skills/stageshow-figma/SKILL.md) | Editable product illustrations and UI demonstrations in Figma | An agent with connected Figma editing tools; prototype capabilities vary |
+| [stageshow-figma](skills/stageshow-figma/SKILL.md) | “Use stageshow-figma” | Creates editable product illustrations and UI demonstrations in Figma. |
 
-### Install
+## Install
 
-Requires Node.js 22.20 or later, according to the current [Skills CLI documentation](https://github.com/vercel-labs/skills).
+Requires Node.js 22.20 or later for the current Skills CLI.
 
 ```bash
-# Discover available skills without installing
-npx skills add ridala/Rstack --list
-
-# Install the Figma skill (choose your agent when prompted)
 npx skills add ridala/Rstack --skill stageshow-figma
 ```
 
-This installs agent instructions. It does not install a Figma plugin or grant Figma access. Connect your agent's Figma tools separately.
+List available skills without installing:
 
-### Use
-
-Ask your agent to use `stageshow-figma`, provide a target Figma file or selection, and describe the output:
-
-> Use stageshow-figma to create an editable 720 × 400 product illustration in this Figma file. Show an inbox conversation assigned to a teammate. Use the existing components and brand styles. Create a static composition first; animate it only if the connected tools support it.
-
-The skill has not yet been evaluated end to end against a live Figma file. It requires the agent to distinguish verified playback from static state designs.
-
-## Repository layout
-
-```text
-skills/       Installable agent skills, each with its own SKILL.md
-docs/        Repository documentation and publishing notes
+```bash
+npx skills add ridala/Rstack --list
 ```
 
-Future tools, templates, and examples can live in separate top-level directories when they exist. Only reusable agent instructions belong in `skills/`; the repository root stays a general resource index.
+## Use
+
+Connect your agent's Figma editing tools, then provide a target file or selection:
+
+> Use stageshow-figma to create an editable 720 × 400 illustration showing an inbox conversation assigned to a teammate. Use the existing components and brand styles.
+
+The skill installs instructions, not a Figma plugin. Prototype authoring and playback depend on the connected tools. The skill has not yet been evaluated end to end in a live Figma file.
 
 ## Maintenance
 
-Rstack is maintained exclusively by [ridala](https://github.com/ridala). External contributions and pull requests are not accepted. The repository is public for inspection, installation, and use; only the owner may modify it.
+Maintained exclusively by [ridala](https://github.com/ridala). External contributions and pull requests are not accepted. Only the owner may modify this repository. Others may use copies under the license below.
 
-See the [contribution policy](CONTRIBUTING.md) and [publishing guide](docs/publishing.md).
+## Credits
 
-## Credits and license
+`stageshow-figma` is independently written and inspired by [StageShow by Benji Taylor](https://benji.org/stageshow) and the [original skill](https://www.skills.sh/benjitaylor/skills/stageshow). It does not include StageShow's React kit, scripts, examples, or assets. No affiliation or endorsement by StageShow or Figma is implied.
 
-The Figma skill is independently written and inspired by [StageShow by Benji Taylor](https://benji.org/stageshow). Rstack is not affiliated with or endorsed by StageShow or Figma. See [credits](CREDITS.md).
+## License
 
-Original Rstack material is available under the [MIT License](LICENSE). Third-party assets, if added later, retain their own licenses.
+[MIT](LICENSE)
