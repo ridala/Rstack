@@ -39,7 +39,11 @@ docs/        Repository documentation and publishing notes
 
 Future tools, templates, and examples can live in separate top-level directories when they exist. Only reusable agent instructions belong in `skills/`; the repository root stays a general resource index.
 
-See [contributing](CONTRIBUTING.md) for conventions and [publishing](docs/publishing.md) for skills.sh discovery.
+## Maintenance
+
+Rstack is maintained exclusively by [ridala](https://github.com/ridala). External contributions and pull requests are not accepted. The repository is public for inspection, installation, and use; only the owner may modify it.
+
+See the [contribution policy](CONTRIBUTING.md) and [publishing guide](docs/publishing.md).
 
 ## Credits and license
 
