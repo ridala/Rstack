@@ -36,8 +36,10 @@ Maintained exclusively by [ridala](https://github.com/ridala). External contribu
 
 ## Credits
 
-`stageshow-figma` is independently written and inspired by [StageShow by Benji Taylor](https://benji.org/stageshow) and the [original skill](https://www.skills.sh/benjitaylor/skills/stageshow). It does not include StageShow's React kit, scripts, examples, or assets. No affiliation or endorsement by StageShow or Figma is implied.
+`stageshow-figma` adapts ideas and workflow from [StageShow by Benji Taylor](https://benji.org/stageshow), whose [source skill](https://github.com/benjitaylor/skills/blob/299140fafd08df55a9c234e610c3f64af3f45531/stageshow/SKILL.md) is MIT licensed. The instructions were rewritten for editable Figma layers, connected agent tools, and Figma prototypes. Benji's copyright and permission notice are included in the [skill license](skills/stageshow-figma/LICENSE).
+
+No StageShow React kit, scripts, examples, or third-party artwork are bundled. Upstream's [asset notices](https://github.com/benjitaylor/skills/blob/299140fafd08df55a9c234e610c3f64af3f45531/stageshow/NOTICE.md) distinguish third-party artwork and trademarks from its MIT-licensed source; those assets require separate review before reuse. No affiliation or endorsement by Benji Taylor or Figma is implied.
 
 ## License
 
-[MIT](LICENSE)
+Original Rstack material: [MIT](LICENSE). The Figma adaptation also preserves the upstream [MIT notice](skills/stageshow-figma/LICENSE).

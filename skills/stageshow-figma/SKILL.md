@@ -101,7 +101,7 @@ Completion: verified appearance, verified behavior where accessible, and an hone
 
 ## References
 
-Inspired by [StageShow by Benji Taylor](https://benji.org/stageshow); this is an independent Figma adaptation, not the original React skill.
+Adapted from the ideas and workflow of [StageShow by Benji Taylor](https://benji.org/stageshow), with instructions rewritten for Figma. This is an unofficial adaptation, not the original React skill. See [LICENSE](LICENSE) for the upstream MIT notice and adaptation copyright.
 
 For uncertain prototype behavior, consult Figma's current documentation:
 - [Smart Animate](https://help.figma.com/hc/en-us/articles/360039818874-Smart-animate-layers-between-frames)
