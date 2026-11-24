@@ -7,9 +7,11 @@ Skills and practical resources I use for design and development, shared so other
 | Skill | Say | What it does |
 | --- | --- | --- |
 | [stageshow-figma](skills/stageshow-figma/SKILL.md) | “Use stageshow-figma” | Creates editable product illustrations and UI demonstrations in Figma. |
-| [project-agent-tree](skills/project-agent-tree/SKILL.md) | "Use project-agent-tree" | Coordinates repository work with bounded agents and optional Codex role templates. |
+| [project-agent-tree](skills/project-agent-tree/SKILL.md) | "Use project-agent-tree" | Launches subagents for repository work using the host’s existing settings. |
 
-`project-agent-tree` passed a clean install from GitHub and a live test with Codex CLI 0.172.0. All four roles completed a task with the correct model and reasoning level. The launcher gave every role the lead's Fast speed and workspace write access, including roles configured as read-only. See the [compatibility guide](skills/project-agent-tree/references/compatibility.md) for the permission issue and required checks, and the [setup instructions](skills/project-agent-tree/references/codex-setup.md). Other launchers are untested.
+With the skill installed, ask “Use `$project-agent-tree` to check what still blocks our first build.” In a session with a subagent tool, the root assigns the investigation to an Explorer and collects its findings. No project configuration is required.
+
+For custom role settings, see the [optional Codex preset](skills/project-agent-tree/references/codex-setup.md) and its [tested limitations](skills/project-agent-tree/references/compatibility.md).
 
 ## Install
 
@@ -19,7 +21,7 @@ Requires Node.js 22.20 or later for the current Skills CLI.
 npx skills add ridala/Rstack --skill stageshow-figma
 
 # Or install the delegation workflow
-npx skills add ridala/Rstack --skill project-agent-tree
+npx skills add ridala/Rstack --skill project-agent-tree -g
 ```
 
 List available skills without installing:

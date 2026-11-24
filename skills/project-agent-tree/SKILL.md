@@ -1,106 +1,32 @@
 ---
 name: project-agent-tree
-description: Coordinate substantial repository work with bounded explorer, worker, researcher, and conditional reviewer agents. Use when delegation would save time or improve confidence; skip small tasks that the root can finish directly.
+description: Delegate repository tasks to subagents for investigation, implementation, research, or review. Use when the user invokes the agent tree or independent work benefits from delegation.
 ---
 
 # Project agent tree
 
-Use the separately installed `$unslop` skill before conversational writing. Resolve it through the current agent's skill catalog, not a machine-specific path. Apply it to progress updates, assignments, reports, and final answers. If it is missing, report the missing dependency and follow the user's writing instructions. Do not install dependencies without authorization.
-Use this Skill for substantial repository work that has independent investigation, implementation, or research tasks. Keep small changes, formatting, trivial lookups, and simple one-file work in the root.
+When the user invokes this skill to do repository work, launch a subagent for a concrete part of that work. Honor the requested role or choose the closest role below. For a small investigation, delegate the investigation itself. A question about the skill's installation or behavior can be answered directly.
 
-The root remains responsible for scope, decisions, integration, verification, and the final answer. Treat every subagent report as evidence to inspect, not as an automatic conclusion. Repository instructions and user authorization apply to every role.
+## Launch and collect
 
-## Setup and model selection
+1. Identify the question the child must answer or the files it owns. Inspect only enough context to give it a useful assignment. For independent tasks, give each child a distinct scope. Keep dependent steps in order.
+2. Call the host's subagent tool (for example, Codex `spawn_agent`). Use the host's default child settings and an available built-in role. If the tool takes only a task, put the role and its instructions in the task. This workflow needs no project config or custom role registration.
+3. Give the child the relevant paths, allowed actions, expected result, and stop condition. Explorer, Researcher, and Reviewer assignments are inspection only. Tell the child to leave files and external state untouched. A Worker may edit only its assigned files. Children should complete their own assignments unless explicitly asked to delegate further.
+4. Use the host's wait or completion mechanism and collect the actual result. While a child works, handle a separate part of the task. Check the child's evidence or diff, run relevant checks, and integrate its findings into the answer.
 
-The workflow can guide an agent with delegation tools. The optional Codex preset defines role models and permissions. Installing this skill does not activate that preset or change the current session's model.
+If the skill was selected implicitly, delegate when an independent assignment would help. Keep trivial work in the root unless the user invoked the workflow or requested delegation. Respect any user or host restriction on spawning agents.
 
-For first-time setup, read [Codex setup](references/codex-setup.md). Before delegating with a new launcher or version, read [compatibility](references/compatibility.md).
+If the separate `$unslop` writing skill is available, use it for reports and updates. Otherwise use the user's writing preferences.
 
-Use the configured model and reasoning effort for each role. If the launcher cannot honor them, report the limitation and keep the task in the root. A user must authorize any substitution. Host tool instructions control how agents are launched, awaited, and cancelled. Never bypass those instructions with another launcher or CLI.
+## Choose the assignment
 
-## Root workflow
+- **Explorer** investigates repository state, entry points, bugs, or remaining work. Ask for findings with file evidence and unresolved questions. Example: “Inspect the backlog and build records. Identify what still blocks the first signed build. Cite the records, flag gaps, and leave files untouched.”
+- **Worker** implements a bounded change. Assign explicit file or component ownership, preserve concurrent edits, and ask for the changed files and results of relevant checks. Parallel workers need separate ownership.
+- **Researcher** answers a specific technical question from installed documentation or primary sources. Ask for sources, applicable versions, and uncertainties.
+- **Reviewer** independently inspects a diff when requested or when a second review would materially reduce risk. Ask for findings ordered by severity with locations and verification gaps.
 
-Understand the request and inspect the current state before delegating. Decide whether another agent would save time or improve confidence. Split only independent, useful work. Give each agent a bounded task, the smallest useful context, a clear deliverable, and a stop condition. Give each worker explicit file or component ownership.
+## Permissions and optional settings
 
-Run independent read-only tasks in parallel. Run dependent tasks in order. Parallel workers must have non-overlapping ownership. Use isolated worktrees when repository instructions require them. Do not assign the same question or files to several agents unless an independent read-only review is intentional.
+Inspection-only describes the assignment. The host controls the child's effective permissions. When the user or project requires an enforced sandbox, verify that boundary before assigning the work. Honor any required model, provider, or other explicit settings. If the host cannot meet a requirement, report which one and continue only with work permitted in the root.
 
-Collect all results and compare the cited evidence. Resolve conflicts by inspecting the disputed files or running the relevant check. Inspect every changed file, run final verification, and give the user one coherent answer.
-
-## Roles and result formats
-
-### Explorer
-
-Use the explorer for bounded repository investigation when files, entry points, dependencies, or the cause of a bug are unclear. It may use read-only checks to reproduce or narrow a bug and find existing patterns. The root handles any edits or assigns them to a Worker when repository rules allow it.
-
-Its report must include findings, file and line evidence when useful, the likely cause or conclusion, risks and unknowns, and the recommended next action.
-
-### Worker
-
-Use a worker for bounded implementation. Assign files or a component with no overlap between parallel workers. The worker follows existing conventions, preserves user and concurrent changes, avoids unrelated cleanup, updates relevant tests, and runs checks tied to its change.
-
-Its report must include what changed, files changed, checks run, results, assumptions, and remaining risks or unfinished work. A worker must not claim a check passed unless it ran.
-
-### Researcher
-
-Use the researcher only when the task needs current official documentation, APIs, configuration formats, version-specific behavior, standards, or another primary technical source. It checks repository files and installed documentation first. It browses only when those sources do not answer the question. It does not edit project files.
-
-Its report must include a direct answer, sources, version or date details, confirmed facts, inferences or uncertainties, and the recommended action.
-
-### Reviewer
-
-The reviewer is optional and expensive. Use it when the user requests an independent review or when a change affects authentication, authorization, permissions, secrets, payments, deletion, or another security boundary. Also use it for changes across several architectural areas, a difficult bug that remains uncertain, failed implementation or verification, or a serious risk of data loss or production outage.
-
-Do not use the reviewer for routine edits, small fixes, formatting, or normal one-file changes. It independently inspects the actual diff and surrounding code. It checks correctness, regressions, unsafe assumptions, security, missing tests, and simpler fixes. It does not rewrite the change unless the root assigns a separate implementation task.
-
-Its report must list findings by severity with file and line evidence, missing tests, remaining risk, and one verdict: `approve`, `approve with minor concerns`, or `request changes`.
-
-No subagent may create another agent unless the root task explicitly authorizes it.
-
-## Assignment templates
-
-Explorer:
-
-```text
-Inspect [specific area or problem] using read-only checks. Do not edit files, create artifacts, change local or remote state, or request write access. Return findings, evidence, likely cause, risks, and the next action. Stop when [completion condition].
-```
-
-Worker:
-
-```text
-Implement [specific change]. You own [files or component]. Do not modify unrelated files. Add or update tests and run [checks]. Return changed files, test results, assumptions, and remaining risks.
-```
-
-Researcher:
-
-```text
-Research [specific question] using official or primary sources. Return the answer, sources, version details, confirmed facts, uncertainties, and the recommended action. Do not edit project files.
-```
-
-Reviewer:
-
-```text
-Review [specific change] independently. Focus on correctness, regressions, security, and missing tests. Return findings ordered by severity with file references, then give a verdict.
-```
-
-Add a precise completion condition to every template. Stop delegating when direct root work is easier.
-
-## Failure handling
-
-If an agent fails, times out, or returns weak evidence, retry once with a narrower task when that would help. Otherwise finish the work in the root. If agents disagree, compare their evidence and verify the disputed point directly. Keep user changes intact during recovery.
-
-Check the launched session's model, reasoning effort, service tier, instructions, and permissions against the role configuration when the launcher exposes that evidence. A role name or prompt is not proof that the settings took effect. Confirm enforced read-only access before assigning work to Explorer, Researcher, or Reviewer. If required settings cannot be enforced or confirmed, finish the task in the root and report the limitation. Use an alternative launch method only when the host supports it and the user has authorized any change in provider, model, or settings.
-
-Never claim a test passed unless it ran. Never claim a fresh session loaded this setup unless a fresh session was tested. If unrelated global configuration breaks a validation command, do not edit it. Retry with the installed CLI's user-config isolation option and report the limitation.
-
-## Final verification
-
-Before replying to the user:
-
-- Confirm the result matches the requested scope and repository instructions.
-- Inspect every changed file and the combined diff.
-- Confirm parallel workers had no overlapping edit ownership.
-- Check subagent claims against their cited files and command results.
-- Run checks appropriate to the change and report the exact results.
-- Resolve review findings or report them as remaining risks.
-- Confirm no unrelated files changed.
-- State any model substitution, failed check, untested behavior, or required owner action.
+Use the [Codex preset guide](references/codex-setup.md) only when asked to configure custom roles. Its [compatibility notes](references/compatibility.md) apply to that preset. Leave project configuration alone during ordinary delegation. If the host lacks a delegation tool or rejects the launch, report what happened and which work the root completed. Only report a child result after the child returns it.

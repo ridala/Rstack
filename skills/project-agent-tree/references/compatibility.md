@@ -1,5 +1,9 @@
 # Launcher compatibility
 
+## Built-in subagents in T3 Code
+
+In a checkout with no project `.codex/` directory, a coordinator read the globally installed skill and received a request to inventory the repository’s skills. It launched one Explorer, collected its report, and verified the two skill entry points. This trial exercised default child settings and an inspection-only assignment. It did not test an enforced filesystem sandbox.
+
 ## Rstack live test on Codex CLI 0.172.0
 
 The reported Rstack audit installed the skill from GitHub into a clean project. Codex read the skill and loaded its role preset after the user trusted the project. All four named roles completed a task.
@@ -15,9 +19,11 @@ The test reproduced inheritance of the lead's speed and write permissions on 0.1
 
 A separate Worker launched with explicit settings created the requested file successfully. This confirms that Worker task completed. It does not prove that the named-role launcher honors permission settings or that a separate read-only role would enforce them.
 
-These results come from the supplied live audit. The documentation update did not rerun the agents. Other launchers, including T3 Code, and other Codex CLI versions are untested.
+These results come from the supplied live audit. The documentation update did not rerun the agents. The optional preset has not been tested in T3 Code or with other Codex CLI versions.
 
-## Verify a launcher
+## Verify a launcher for the optional preset
+
+These checks apply when the preset's specific settings are required. Ordinary skill invocation uses the host's built-in subagents and inherited permissions.
 
 Before delegating project work with this preset:
 

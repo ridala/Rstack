@@ -1,8 +1,8 @@
 # Codex setup
 
-This skill contains instructions and an optional Codex configuration preset. Installing instructions does not register the roles or change model settings.
+For ordinary use, invoke the installed skill in a session with a subagent tool. The root assigns roles in the child prompts. Use this guide only to configure the optional model and role preset.
 
-## Dependencies
+## Optional writing skill
 
 Install `unslop` from its maintainer when desired:
 
