@@ -9,7 +9,7 @@ Skills and practical resources I use for design and development, shared so other
 | [stageshow-figma](skills/stageshow-figma/SKILL.md) | “Use stageshow-figma” | Creates editable product illustrations and UI demonstrations in Figma. |
 | [project-agent-tree](skills/project-agent-tree/SKILL.md) | "Use project-agent-tree" | Coordinates repository work with bounded agents and optional Codex role templates. |
 
-`project-agent-tree` is an initial draft. Its configuration files pass static checks, but the Rstack package has not been tested in a fresh agent session. See [setup instructions](skills/project-agent-tree/references/codex-setup.md).
+`project-agent-tree` passed a clean install from GitHub and a live test with Codex CLI 0.172.0. All four roles completed a task with the correct model and reasoning level. The launcher gave every role the lead's Fast speed and workspace write access, including roles configured as read-only. See the [compatibility guide](skills/project-agent-tree/references/compatibility.md) for the permission issue and required checks, and the [setup instructions](skills/project-agent-tree/references/codex-setup.md). Other launchers are untested.
 
 ## Install
 
