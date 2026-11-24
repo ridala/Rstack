@@ -1,0 +1,7 @@
+interface:
+  display_name: "Project agent tree"
+  short_description: "Coordinate bounded repository subagents"
+  default_prompt: "Use $project-agent-tree to coordinate this substantial repository task."
+
+policy:
+  allow_implicit_invocation: true

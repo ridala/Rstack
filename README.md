@@ -7,6 +7,9 @@ Skills and practical resources I use for design and development, shared so other
 | Skill | Say | What it does |
 | --- | --- | --- |
 | [stageshow-figma](skills/stageshow-figma/SKILL.md) | “Use stageshow-figma” | Creates editable product illustrations and UI demonstrations in Figma. |
+| [project-agent-tree](skills/project-agent-tree/SKILL.md) | "Use project-agent-tree" | Coordinates repository work with bounded agents and optional Codex role templates. |
+
+`project-agent-tree` is an initial draft. Its configuration files pass static checks, but the Rstack package has not been tested in a fresh agent session. See [setup instructions](skills/project-agent-tree/references/codex-setup.md).
 
 ## Install
 
@@ -14,6 +17,9 @@ Requires Node.js 22.20 or later for the current Skills CLI.
 
 ```bash
 npx skills add ridala/Rstack --skill stageshow-figma
+
+# Or install the delegation workflow
+npx skills add ridala/Rstack --skill project-agent-tree
 ```
 
 List available skills without installing:

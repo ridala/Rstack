@@ -1,0 +1,22 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+model = "gpt-6.2-sol"
+model_reasoning_effort = "medium"
+service_tier = "fast"
+
+[features]
+fast_mode = true
+multi_agent_v2 = true
+
+[agents.explorer]
+description = "Inspect a bounded project area, trace code paths, and report evidence with read-only access."
+config_file = "agents/explorer.toml"
+
+[agents.worker]
+config_file = "agents/worker.toml"
+
+[agents.researcher]
+config_file = "agents/researcher.toml"
+
+[agents.reviewer]
+config_file = "agents/reviewer.toml"
