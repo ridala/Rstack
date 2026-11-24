@@ -52,6 +52,6 @@ Before delegating project work with this preset:
 4. Confirm the launcher loads each role's instructions and can resolve the installed `unslop` dependency.
 5. Record the client version, checks actually run, observed settings, and anything that remains unverified.
 
-The lead must check the permissions the launcher actually granted, rather than assuming the role file took effect. If the lead cannot confirm enforced read-only access for Explorer, Researcher, or Reviewer, the lead must handle that task itself and report the limitation. If any other required setting is ignored or unconfirmed, keep the task in the lead. Do not automatically start separate CLI sessions to bypass host orchestration rules.
+If Root cannot confirm a required setting, report which setting the launcher failed to confirm. Root can inspect the files and run existing checks. Any implementation still needs a Worker that meets the requirements. Do not automatically start separate CLI sessions to bypass host orchestration rules.
 
 Subagents may not create further agents unless the root assignment explicitly authorizes it. Host rules may impose tighter limits and always take precedence.

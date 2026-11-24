@@ -5,16 +5,20 @@ description: Delegate repository tasks to subagents for investigation, implement
 
 # Project agent tree
 
-When the user invokes this skill to do repository work, launch a subagent for a concrete part of that work. Honor the requested role or choose the closest role below. For a small investigation, delegate the investigation itself. A question about the skill's installation or behavior can be answered directly.
+## Root's role
+
+As Root, turn the user's goal into assignments. Tell the user who owns the current task, what you have verified, and what comes next. When work is blocked, explain why. Ask the user for a decision or action only when it requires their input.
+
+You can read code, inspect diffs, and run existing tests and checks. Limit your own file edits to Markdown and HTML documentation, such as a README or a test report. Assign every implementation change to a Worker, including one-line fixes, test edits, and changes to application HTML. Run checks in verification mode when they offer to fix files or update snapshots.
+
+When the user invokes the tree for repository work, give a child a concrete assignment. Honor a requested role. Delegate even a small investigation to an Explorer. You can answer questions about the skill and write documentation yourself. When the skill applies implicitly, delegate independent inspection when it helps. Respect user and host limits on delegation.
 
 ## Launch and collect
 
 1. Identify the question the child must answer or the files it owns. Inspect only enough context to give it a useful assignment. For independent tasks, give each child a distinct scope. Keep dependent steps in order.
 2. Read the selected role file and launch it with the settings below. Use the installed skill directory as the base for relative paths. This works without project configuration or a registered role name.
 3. Give the child the relevant paths, allowed actions, expected result, and stop condition. Explorer, Researcher, and Reviewer assignments are inspection only. Tell the child to leave files and external state untouched. A Worker may edit only its assigned files. Children should complete their own assignments unless explicitly asked to delegate further.
-4. Collect the child’s actual result through the host's completion mechanism. While a child works, handle any independent part of the task. Check the child's evidence or diff, run relevant checks, and integrate its findings into the answer.
-
-If the skill was selected implicitly, delegate when an independent assignment would help. Keep trivial work in the root unless the user invoked the workflow or requested delegation. Respect any user or host restriction on spawning agents.
+4. Collect the child's result through the host's completion mechanism. Check its evidence or diff and run the relevant checks. If a check fails and needs a code change, give the failure to the responsible Worker. Rerun the check after the fix and report the result.
 
 If the separate `$unslop` writing skill is available, use it for reports and updates. Otherwise use the user's writing preferences.
 
@@ -43,4 +47,4 @@ Check the returned model and options against the role. Flag a mismatch before us
 
 Carry the file's sandbox and approval settings into the launch where the host supports them. T3 runtime modes do not express the TOML filesystem sandbox or Codex approval policy. Under inherited permissions, include the role’s action limits in its brief (for Explorer, no edits or approval requests), and disclose any unenforced limits. Inspection-only describes the assignment. When the user or project requires an enforced sandbox, verify that boundary before assigning the work. Honor any required model, provider, or other explicit settings. If the host cannot meet a requirement, report which one and continue only with work permitted in the root.
 
-Use the [Codex preset guide](references/codex-setup.md) only when asked to configure custom roles. Its [compatibility notes](references/compatibility.md) apply to that preset. Leave project configuration alone during ordinary delegation. If the host lacks a delegation tool or rejects the launch, report what happened and which work the root completed. Only report a child result after the child returns it.
+Use the [Codex preset guide](references/codex-setup.md) only when asked to configure custom roles. Its [compatibility notes](references/compatibility.md) apply to that preset. Leave project configuration alone during ordinary delegation. If the host blocks a launch, report what happened, what you completed, and which assignment still needs a child. Only report a child result after the child returns it.
