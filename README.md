@@ -7,11 +7,11 @@ Skills and practical resources I use for design and development, shared so other
 | Skill | Say | What it does |
 | --- | --- | --- |
 | [stageshow-figma](skills/stageshow-figma/SKILL.md) | “Use stageshow-figma” | Creates editable product illustrations and UI demonstrations in Figma. |
-| [project-agent-tree](skills/project-agent-tree/SKILL.md) | "Use project-agent-tree" | Launches subagents for repository work using the host’s existing settings. |
+| [project-agent-tree](skills/project-agent-tree/SKILL.md) | "Use project-agent-tree" | Launches subagents for repository work with the model, reasoning effort, and service tier specified for each role. |
 
-With the skill installed, ask “Use `$project-agent-tree` to check what still blocks our first build.” In a session with a subagent tool, the root assigns the investigation to an Explorer and collects its findings. No project configuration is required.
+With the skill installed, ask “Use `$project-agent-tree` to check what still blocks our first build.” The root launches an Explorer and checks its findings. The session needs a subagent launcher that can apply the role’s model, reasoning effort, and service tier. No project configuration is required.
 
-For custom role settings, see the [optional Codex preset](skills/project-agent-tree/references/codex-setup.md) and its [tested limitations](skills/project-agent-tree/references/compatibility.md).
+To register named roles in a project, see the [optional Codex preset](skills/project-agent-tree/references/codex-setup.md) and its [tested limitations](skills/project-agent-tree/references/compatibility.md).
 
 ## Install
 

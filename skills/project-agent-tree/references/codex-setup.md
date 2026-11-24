@@ -1,6 +1,6 @@
 # Codex setup
 
-For ordinary use, invoke the installed skill in a session with a subagent tool. The root assigns roles in the child prompts. Use this guide only to configure the optional model and role preset.
+For ordinary use, invoke the installed skill in a session with a subagent tool. The root reads the bundled role file and passes its model, reasoning effort, and tier to the child launcher. The Root row below applies only when starting a session with the optional project preset. Use this guide to register the roles in a project.
 
 ## Optional writing skill
 
@@ -47,7 +47,7 @@ The reported Rstack live audit passed a clean install from GitHub into a clean p
 
 All four roles inherited the lead's Fast speed and workspace write access. Explorer, Researcher, and Reviewer therefore had write access despite their read-only settings. Worker and Reviewer ran at Fast rather than their configured standard speed. A separate Worker launched with explicit settings created the requested file successfully. That result does not establish read-only enforcement for other roles.
 
-See [compatibility](compatibility.md) for the reproduced behavior and the checks required before delegation. Other launchers and other Codex CLI versions are untested.
+See [compatibility](compatibility.md) for the reproduced behavior and the checks required before delegation. The compatibility notes also describe T3 launches using explicit child settings.
 
 Official references:
 - [Subagents](https://developers.openai.com/codex/subagents/)
