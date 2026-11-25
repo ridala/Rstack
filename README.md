@@ -11,6 +11,8 @@ Skills and practical resources I use for design and development, shared so other
 
 With the skill installed, ask “Use `$project-agent-tree` to check what still blocks our first build.” The root launches an Explorer and checks its findings. The session needs a subagent launcher that can apply the role’s model, reasoning effort, and service tier. No project configuration is required.
 
+Root can run independent assignments in parallel, including two Explorers with different scopes. The Writer drafts and revises prose and requires the separately installed [unslop skill](skills/project-agent-tree/references/codex-setup.md#writing-skill).
+
 To register named roles in a project, see the [optional Codex preset](skills/project-agent-tree/references/codex-setup.md) and its [tested limitations](skills/project-agent-tree/references/compatibility.md).
 
 ## Install

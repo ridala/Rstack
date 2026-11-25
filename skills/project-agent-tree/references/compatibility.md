@@ -15,7 +15,7 @@ Codex did not expose the effective backend tier in these turn records. All four 
 
 ### Repeat the acceptance check
 
-Use a checkout without project role files. Start the coordinator with settings that differ from the roles being tested. Invoke the installed skill with a concrete task for each role, leaving model and tier out of the prompt. Give the Worker an owned scratch file. Use an inspection-only inventory, a sourced lookup, and a diff with a known discrepancy for the other roles.
+Use a checkout without project role files. Start Root with settings that differ from the roles being tested. Invoke the installed skill with a concrete task for each role, leaving model and tier out of the prompt. Give the Worker an owned scratch file. Use an inspection-only inventory for the Explorer, a sourced lookup for the Researcher, and a diff with a known discrepancy for the Reviewer. Give the Writer a copy brief with `$unslop` installed and check that the Writer reads it and returns the revised copy. To check parallel launches, assign two Explorers different scopes and verify that both run before either finishes.
 
 For each child, compare its launch record to the bundled role file and check its actual deliverable. Inspect the executed model, reasoning effort and tier option separately. Record any field the execution trace omits. A child name, a plausible answer, or the coordinator’s settings alone cannot pass this check. This follows OpenAI’s guidance to evaluate both the actions taken and the outcome. [Testing Agent Skills Systematically with Evals](https://developers.openai.com/blog/eval-skills/)
 
